@@ -1,0 +1,931 @@
+a:focus, 
+button:focus, 
+input:focus,
+div:focus,
+textarea:focus {
+  outline: none;
+}
+
+html {
+  background-color: rgb(74, 74, 75);
+  -webkit-tap-highlight-color: rgba(0, 0, 0, 0);
+  overflow: auto;
+}
+
+body {
+  position: relative;
+  z-index: 2;
+  width: 100%;
+  margin: auto;
+  background-color: #3B3B3C;
+  text-align: center;
+  font-family: "Espuma Pro", Helvetica, Arial, sans-serif;
+  cursor: context-menu;
+}
+
+::-webkit-scrollbar {
+    width: 5px;
+}
+::-webkit-scrollbar-track {
+    box-shadow: inset 0 0 6px rgba(0,0,0,0.3); 
+    border-radius: 2.5px;
+    -webkit-border-radius: 2.5px;
+}
+::-webkit-scrollbar-thumb {
+    -webkit-border-radius: 2.5px;
+    border-radius: 2.5px;
+    background: rgba(168, 167, 167, 0.8); 
+    box-shadow: inset 0 0 6px rgba(0,0,0,0.5); 
+}
+::-webkit-scrollbar-thumb:window-inactive {
+    background: rgba(168, 167, 167, 0.8); 
+}
+
+::placeholder {
+    font-family: "Espuma Pro", Helvetica, Arial, sans-serif;
+    font-style: italic;
+    font-weight: 400;
+}
+
+/* кнопки КАЛЕНДАРЬ и МЕНЮ */
+
+.two_buttons_top {
+    position: fixed; 
+    z-index: 1;   
+    display: flex;
+    width: 100%;
+    height: 53px;
+    align-items: flex-start;
+    justify-content: space-between;
+    font-size: 17px;
+    background: #3B3B3C;
+    box-shadow: 4px 4px 10px #3B3B3C;
+}
+
+.almanac_button,
+.menu_button {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    margin-top: 10px;
+    margin-left: 10px;
+    width: 143px;
+    height: 31px;
+    /* background: #3B3B3C; */
+    box-shadow: 4px 4px 4px rgba(0, 0, 0, 0.25);
+    border: 1px solid #C4C4C4;
+    border-radius: 4px; 
+    cursor: pointer;
+}
+
+.menu_button {
+    margin-left: 0px;
+    margin-right: 10px;
+    width: 124px;
+}
+
+.link_almanac,
+.link_menu {
+    letter-spacing: 2px;
+    text-decoration: none;
+    color: #C4C4C4;
+}
+
+.link_menu {
+    letter-spacing: 4px;
+}
+
+.almanac_button:hover,
+.menu_button:hover {
+    background: rgb(68, 68, 70);
+}
+
+/* фиксированная понель внизу экрана */
+
+.footer2-fix {
+    position: fixed; 
+    z-index: 1;   
+    display: flex;
+    margin-top: calc(100vh - 7px);
+    width: 100%;
+    height: 7px;
+    align-items: flex-end;
+    justify-content: space-between;
+    background:  #3B3B3C;
+    box-shadow: 4px -3px 7px #3B3B3C;
+}
+
+/* заголовки - КАЛЕНДАРЬ - и - ДНЕВНИК - */
+
+.almanac-title__span,
+.diary-title__span {
+    display: flex;
+    justify-content: center;
+    color: #71F6FF;
+}
+
+.link-anchor__almanac-title,
+.link-anchor__diary-title {
+    padding-top: 65px;
+    padding-bottom: 30px;
+    font-size: 26px;
+    letter-spacing: 2px;
+    font-weight: 500;
+}
+
+.link-anchor__diary-title {
+    padding-top: 55px;
+    letter-spacing: 11px;
+}
+
+/* сетка GRID  */
+
+.container_5 {
+    display: grid;
+    justify-content: center;
+    grid-template-columns: repeat(7, 36px);
+    grid-template-rows: repeat(9, 36px) 75px 54px;
+    grid-gap: 6px 6px;
+}
+
+/* дни НЕДЕЛИ */
+
+.day-week {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    vertical-align: middle;
+    border-radius: 4px;
+    font-size: 20px;
+    border: 1px solid rgb(252, 219, 130);
+    color: rgb(252, 219, 130);
+    font-weight: 500;
+    cursor: context-menu;
+}
+
+/* ссылки ДАТЫ */
+
+.number__date-link {
+    display: grid;
+    align-items: center;
+    border-radius: 4px;
+    border: 1.5px solid #C4C4C4;
+}
+
+.date-link {
+    font-size: 20px;
+    cursor: context-menu;
+    font-weight: 500;
+    text-decoration: none;
+    color: #C4C4C4;
+}
+
+/* Кнопки - записать МЫСЛИ и кнопки ГОД и МЕСЯЦ */
+
+.button__indicate {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    border-radius: 4px;
+    border: 1px solid #C7FFFC;
+    cursor: pointer;
+    box-shadow: 4px 4px 4px rgba(0, 0, 0, 0.25);
+    font-family: "Espuma Pro", Helvetica, Arial, sans-serif;
+    color: #C7FFFC;
+    font-weight: 500;
+    background: #3B3B3C;
+    width: 100%;
+}
+
+.button__indicate-year, 
+.button__indicate-month {
+    font-size: 19px;
+    text-transform: uppercase;
+}
+
+/* Кнопки - выбрать МЕСЯЦ и выбрать ГОД */
+
+.button__indicate-year,
+.button__indicate-month {
+    grid-column: 2/7;
+}
+
+.button__arrow-minus-year:hover,
+.button__arrow-plus-year:hover,
+.button__arrow-minus-month:hover,
+.button__arrow-plus-month:hover,
+.button__indicate-year:hover,
+.button__indicate-month:hover,
+.arrow:hover {
+    border: 1px solid #71F6FF;
+    color: #71F6FF;
+    fill: #71F6FF;
+}
+
+/* Кнопки - записать МЫСЛИ */
+
+.text-write,
+.audio-write {
+    grid-column: 1/8;
+    display: flex;
+    align-items: flex-end;
+    justify-content: center;
+}
+
+.button__text-write,
+.button__audio-write {
+    width: 100%;
+    border-radius: 4px;
+    border: 1px solid #71F6FF;
+    cursor: pointer;
+    box-shadow: 4px 4px 4px rgba(0, 0, 0, 0.25);
+    font-family: "Espuma Pro", Helvetica, Arial, sans-serif;
+    color: #71F6FF;
+    font-weight: 500;
+    height: 43px;
+    background: none;
+    font-size: 19px;
+}
+
+.text-write-link,
+.audio-write-link {
+    text-decoration: none;
+}
+
+.button__text-write:hover,
+.button__audio-write:hover {
+    border: 1px solid #C7FFFC;
+    color: #C7FFFC;
+}
+
+/* содержание Дневника */
+
+/* запись ТЕКСТОМ *//* сохраненный ТЕКСТ */
+
+.container-6_text_write,
+.container-7_text_memory,
+.container-8_audio_write {
+    display: grid;
+    max-width: 500px;
+    margin: auto;
+    padding: 10px;
+    grid-template-columns: repeat(2, 1fr);
+    grid-template-rows: 35px auto 60px;
+    grid-gap: 0px;
+}
+
+.container-7_text_memory {
+    grid-template-rows: 35px auto;
+}
+
+.modal,
+.modal222,
+.modal444,
+.modal555 {
+    display: flex;  
+    width: 100%;
+    height: 100%;
+    position: fixed;
+    top: 0;
+    left: 0;
+    background-color:rgb(85, 85, 85, 0.3);
+    z-index: 1010;
+}
+
+.textRedao, 
+.textRedao222,
+.textRedao444,
+.textRedao555 {
+    position: relative;
+    display: flex;
+    flex-wrap: wrap;
+    align-content: space-around;
+    width: 80%;
+    max-width: 430px;
+    padding: 15px;
+    margin: auto;
+    height: 270px;
+    background-color:rgb(85, 85, 85, 0.9);
+    color: #C4C4C4;
+    font-family: "Espuma Pro", Helvetica, Arial, sans-serif;
+    border: 1px solid rgba(0, 0, 0, 0.25);
+    text-align: center;
+    justify-content: center;
+    align-items: center;
+    border-radius: 4px; 
+    font-size: 18px;
+    font-weight: 500;
+    box-shadow: 4px 4px 4px rgba(0, 0, 0, 0.25);
+    z-index: 1011;
+}
+
+.textRedao222,
+.textRedao555 {
+    height: 200px;
+}
+
+.textRedao444 {
+    height: 400px;
+}
+
+.submit_input,
+.text-redact-input {
+    color: #C4C4C4;
+    width: 100%;
+    max-width: 280px;
+    height: 40px;
+    border-radius: 4px;
+    border: 1px solid #C4C4C4;
+    font-family: "Espuma Pro", Helvetica, Arial, sans-serif;
+    font-size: 18px; 
+    font-weight: 500;
+    background-color:rgb(78, 78, 78);
+    box-shadow: 4px 4px 4px rgba(0, 0, 0, 0.25);
+    cursor: pointer;
+}
+
+.text-redact-input {
+    max-width: 410px;
+    height: 200px;
+    cursor: text;
+}
+
+.container-6_text_write,
+/* .container-7_text_memory, */
+.container-8_audio_write,
+.textRedao, .textRedao222, 
+.modal,.modal222,
+.textRedao444,.modal444,
+.textRedao555,.modal555 {
+    display: none;
+}
+
+.write-date, .write-time,
+.memory-date, .memory-time,
+.memory-audio-date, .memory-audio-time {
+    border: 1px solid #71F6FF;
+    font-size: 16px;
+    color: #71F6FF;
+    display: flex;
+    align-items: center;
+    font-weight: 500;
+}
+
+.memory-date, .memory-time,
+.memory-audio-date, .memory-audio-time {
+    border: 1px solid #C7FFFC;
+    color: #C7FFFC;
+}
+
+.write-date,
+.memory-date,
+.memory-audio-date {
+    grid-column: 1/2;
+    border-radius: 4px 0 0 4px;
+    justify-content: start;
+    padding-left: 10px;
+    border-right: none;
+}
+
+.write-time,
+.memory-time,
+.memory-audio-time {
+    grid-column: 2/3;
+    border-radius: 0 4px 4px 0;
+    justify-content: flex-end;
+    padding-right: 10px;
+    border-left: none; 
+}
+
+.text-write2__textarea,
+.text-memory__textarea,
+.audio-write2 {
+    grid-column: 1/3;
+    padding: 10px;
+    height: 175px;
+    text-align: left;
+    border-radius: 4px 4px 0 0; 
+    font-size: 16px;
+    text-decoration: none;
+    background-color: #3B3B3C;
+    color: #fcdb82;
+    font-family: "Espuma Pro", Helvetica, Arial, sans-serif;
+    cursor: text;
+    border: 1px solid rgb(252, 219, 130);
+    border-bottom: none;
+    font-weight: 500;
+}
+
+.text-memory__textarea {
+    background-color: #3B3B3C;
+    border-bottom: 1px solid rgb(252, 225, 150);
+    color: rgb(252, 225, 150);
+    border-radius: 4px; 
+    cursor: pointer;
+}
+
+textarea {
+  overflow: auto;
+  resize: none;
+}
+
+.save__button,
+.delete__button {
+    grid-column: 1/2;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    border-radius: 0 0 0 4px; 
+    font-family: "Espuma Pro", Helvetica, Arial, sans-serif;
+    border: 1px solid rgb(252, 219, 130);
+    border-top: none;
+}
+
+.save__button {
+    border-right: none;
+}
+
+.delete__button {
+    grid-column: 2/3;
+    border-radius: 0 0 4px 0;
+    border-left: none;
+}
+
+.button__save,
+.button__delete {
+    width: 130px;
+    height: 31px;
+    background: none;
+    border-radius: 4px; 
+    cursor: pointer;
+    border: 1px solid rgb(252, 219, 130);
+    color: rgb(252, 219, 130);
+    font-size: 16px;
+    box-shadow: 3px 3px 3px rgba(83, 83, 83, 0.25);
+}
+
+.button__save:focus,
+.button__save:hover,
+.button__delete:focus,
+.button__delete:hover {
+    border: 1px solid #FFEDBD;
+    color: #FFEDBD;
+}
+
+.footer1 {
+    width: 100%;
+    height: 1800px;
+}
+
+.audio-write2 {
+    display: grid;
+    align-content: center;
+    height: 84px;
+}
+
+.sound-clips,
+.main-controls {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+}
+
+.button__start,
+.button__stop,
+.button__pause1,
+.button__resume,
+.delete,
+.button__play, 
+.button__pause2 {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    margin: 0px;
+    width: 38px;
+    height: 38px;
+    border-radius: 4px; 
+    cursor: pointer;
+    background-color: rgb(252, 225, 150);
+    border: none;
+    color: #3B3B3C;
+    font-size: 16px;
+    font-family: inherit;
+    box-shadow: 3px 3px 3px rgba(83, 83, 83, 0.25);
+}
+
+.button__pause1,
+.button__pause2 {
+    background-color: hsl(352, 95%, 59%);
+}
+
+.time-recording {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 21px;
+    font-family: inherit;
+    color: rgb(252, 225, 150);
+}
+
+.button__pause1,
+.button__resume,
+.sound-clips,
+.button__play,
+.button__pause2 {
+    display: none;
+}
+
+.button__start:hover {
+    background-color: rgb(250, 53, 79);
+}
+
+.button__stop {
+    background-color: #07F0FF;
+}
+
+.button__play {
+    padding-left: 8px;
+}
+
+article {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    width: 100%;
+    height: 84px;
+}
+
+audio {
+    width: 278px;
+    height: 18px;
+}
+
+.delete {
+    width: 100px;
+    height: 28px;
+    background-color: #07F0FF;
+    color: #3B3B3C;
+    font-weight: 900;
+    font-size: 18px;
+}
+
+/* Проигрыватель */
+
+.container-9_audio_memory {
+    display: grid;
+    max-width: 500px;
+    margin: auto;
+    padding: 10px;
+    grid-template-columns: repeat(2, 1fr);
+    grid-template-rows: 35px 48px 23px 38px 23px 63px;
+    grid-gap: 0px;
+} 
+
+.ollGry .memory-audio-date .memory-audio-time {
+    background-color: #C4C4C4;
+    color: rgb(252, 219, 130);
+    border: 1.5px solid #C4C4C4;
+}
+
+.memory-audio-date {
+    grid-row: 1/2;
+    grid-column: 1/2;
+}
+
+.memory-audio-time {
+    grid-row: 1/2;
+    grid-column: 2/3;
+}
+
+.audio-memory {
+    grid-column: 1/3;
+    display: grid;
+    grid-template-columns: 38px 1fr 1fr 38px;
+    grid-template-rows: 38px 23px 38px 23px 53px;
+    padding: 10px;
+    height: 175px;
+    text-align: left;
+    font-size: 16px;
+    text-decoration: none;
+    font-family: "Espuma Pro", Helvetica, Arial, sans-serif;
+    border: 1px solid rgb(252, 219, 130);
+    font-weight: 500;
+    background-color: #3B3B3C;
+    color: rgb(252, 219, 130);
+    border-radius: 4px; 
+    cursor: pointer;
+}
+
+.button-play_audio,
+.button-download_audio {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    margin: 0px;
+    width: 38px;
+    height: 38px;
+    border-radius: 4px; 
+    cursor: pointer;
+    background-color: rgb(252, 225, 150);
+    border: none; 
+    color: #3B3B3C;
+    font-size: 16px;
+    font-family: inherit;
+}
+
+.button-buckward,
+.forward,
+.button-speed-normal,
+.button-delit_trek {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    margin: 0px;
+    width: 38px;
+    height: 38px;
+    border-radius: 4px; 
+    cursor: pointer;
+    background-color: #3B3B3C;
+    border: 1px solid rgb(252, 219, 130);
+    color: rgb(252, 219, 130);
+    font-size: 16px;
+    font-family: inherit;
+}
+
+.anchor_audio-memory {
+    grid-row: 1/2;
+    grid-column: 1/4;
+    display: flex;
+    align-self: center;
+    font-size: 17px;
+}
+
+.button-delit_trek {
+    grid-row: 1/2;
+    grid-column: 4/5;
+    display: flex;
+    justify-self: center;
+    align-self: flex-end;
+    border: 1px solid rgb(250, 53, 79);
+    width: 28px;
+    height: 28px;
+}
+
+.button-play_audio {
+    grid-row: 3/4;
+    grid-column: 1/2;
+}
+
+.button-download_audio {
+    grid-row: 3/4;
+    grid-column: 4/5;
+    background-color: #07F0FF;
+    
+}
+
+.current-time-trek {
+    grid-row: 3/4;
+    grid-column: 2/3;
+    display: flex;
+    justify-self: right;
+    align-self: center;
+    padding-right: 10px;
+    font-size: 19px;
+}
+
+.duration-trek {
+    grid-row: 3/4;
+    grid-column: 3/4;
+    display: flex;
+    justify-self: left;
+    align-self: center;
+    padding-left: 10px;
+    font-size: 19px;
+}
+
+.button-buckward {
+    grid-row: 5/6;
+    grid-column: 1/2;
+    display: flex;
+    align-self: center;
+}
+
+.button-speed-normal {
+    grid-row: 5/6;
+    grid-column: 2/4;
+    width: 184px;
+    display: flex;
+    justify-self: center;
+    align-self: center;
+}
+
+.forward {
+    grid-row: 5/6;
+    grid-column: 4/5;
+    display: flex;
+    align-self: center;
+}
+
+/* AudioMemory_9 */
+
+.allGrey_AudioMemory_9 .memory-audio-date, 
+.allGrey_AudioMemory_9 .memory-audio-time,
+.allGrey_AudioMemory_9 .button-delit_trek,
+.allGrey_AudioMemory_9 .button-buckward,
+.allGrey_AudioMemory_9 .button-speed-normal,
+.allGrey_AudioMemory_9 .forward,
+.allGrey_AudioMemory_9 .audio-memory {
+    color: #C4C4C4;
+    border: 1.5px solid #C4C4C4;
+}
+
+.allGrey_AudioMemory_9 .anchor_audio-memory,
+.allGrey_AudioMemory_9 .player-trek,
+.allGrey_AudioMemory_9 .current-time-trek,
+.allGrey_AudioMemory_9 .duration-trek {
+    color: #C4C4C4;
+}
+
+.allGrey_AudioMemory_9 .button-play_audio,
+.allGrey_AudioMemory_9 .button-download_audio {
+    background-color: #C4C4C4;
+}
+
+.allGrey_AudioMemory_9 .delit_trek-path,
+.allGrey_AudioMemory_9 .delit_trek-rect,
+.allGrey_AudioMemory_9 .buckward-rect,
+.allGrey_AudioMemory_9 .forward-rect1,
+.allGrey_AudioMemory_9 .forward-rect2 {
+    fill: #C4C4C4;
+}
+
+.allGrey_AudioMemory_9 .memory-audio-date {
+    border-right: none;
+}
+
+.allGrey_AudioMemory_9 .memory-audio-time {
+    border-left : none;
+}
+
+/* TextMemory_7 */
+
+.allGrey_TextMemory_7 .text-memory__textarea, 
+.allGrey_TextMemory_7 .memory-date,
+.allGrey_TextMemory_7 .memory-time {
+    color: #C4C4C4;
+    border: 1.5px solid #C4C4C4;
+}
+
+.allGrey_TextMemory_7 .memory-date {
+    border-right: none;
+}
+
+.allGrey_TextMemory_7 .memory-time {
+    border-left : none;
+}
+
+/* TextWrite_6  */
+
+.allGrey_TextWrite_6 .text-write2__textarea, 
+.allGrey_TextWrite_6 .write-date,
+.allGrey_TextWrite_6 .write-time,
+.allGrey_TextWrite_6 .button__save,
+.allGrey_TextWrite_6 .button__delete {
+    color: #C4C4C4;
+    border: 1.5px solid #C4C4C4;
+}
+
+.allGrey_TextWrite_6 .save__button,
+.allGrey_TextWrite_6 .delete__button {
+    border: 1.5px solid #C4C4C4;
+}
+
+.allGrey_TextWrite_6 .write-date,
+.allGrey_TextWrite_6 .save__button {
+    border-right: none;
+}
+
+.allGrey_TextWrite_6 .write-time,
+.allGrey_TextWrite_6 .delete__button {
+    border-left : none;
+}
+
+.allGrey_TextWrite_6 .save__button,
+.allGrey_TextWrite_6 .delete__button {
+    border-top : none;
+}
+
+.allGrey_TextWrite_6 .text-write2__textarea {
+    border-bottom : none;
+}
+
+/* AudioWrite_8 */
+
+.allGrey_AudioWrite_8 .audio-write2, 
+.allGrey_AudioWrite_8 .write-date,
+.allGrey_AudioWrite_8 .write-time,
+.allGrey_AudioWrite_8 .write-audio-date,
+.allGrey_AudioWrite_8 .write-audio-time,
+.allGrey_AudioWrite_8 .button__save,
+.allGrey_AudioWrite_8 .button-audio-save,
+.allGrey_AudioWrite_8 .button__delete {
+    color: #C4C4C4;
+    border: 1.5px solid #C4C4C4;
+}
+
+.allGrey_AudioWrite_8 .save__button,
+.allGrey_AudioWrite_8 .delete__button {
+    border: 1.5px solid #C4C4C4;
+}
+
+.allGrey_AudioWrite_8 .button__start,
+.allGrey_AudioWrite_8 .button__pause1,
+.allGrey_AudioWrite_8 .button__resume,
+.allGrey_AudioWrite_8 .button__stop,
+.allGrey_AudioWrite_8 .button__play,
+.allGrey_AudioWrite_8 .button__pause2,
+.allGrey_AudioWrite_8 .delete,
+.allGrey_AudioWrite_8 .button__pause2 {
+    background-color: #C4C4C4;
+}
+
+.allGrey_AudioWrite_8 .time-recording {
+    color: #C4C4C4;
+}
+
+.allGrey_AudioWrite_8 .write-date,
+.allGrey_AudioWrite_8 .save__button {
+    border-right: none;
+}
+
+.allGrey_AudioWrite_8 .write-time,
+.allGrey_AudioWrite_8 .delete__button {
+    border-left : none;
+}
+
+.allGrey_AudioWrite_8 .save__button,
+.allGrey_AudioWrite_8 .delete__button {
+    border-top : none;
+}
+
+.allGrey_AudioWrite_8 .audio-write2 {
+    border-bottom : none;
+}
+
+.date-link_class {
+    color: rgb(250, 53, 79);
+    cursor: pointer;
+    
+}
+
+.number__date-link_class {
+    border: 1.5px solid rgb(250, 53, 79);
+}
+
+.date-link_class:hover {
+    color: rgb(255, 96, 117);
+}
+
+.number__date-link_class:hover {
+    border: 1.5px solid rgb(255, 96, 117);
+}
+
+.date-today {
+    border: 1.5px solid #71F6FF;
+}
+
+.link_date-today {
+    color: #71F6FF;
+}
+
+/* другие ПРАВИЛА */
+
+@media (max-height: 641px) {
+    
+    .link-anchor__almanac-title,
+    .link-anchor__diary-title {
+        padding-top: 55px;
+        padding-bottom: 17px;
+        font-size: 23px;
+    }
+    
+    .link-anchor__diary-title {
+        letter-spacing: 8px;
+    }
+    
+    .container_5 {
+        grid-template-columns: repeat(7, 32.5px);
+        grid-template-rows: repeat(9, 32.5px) 55px 42px;
+    }
+          
+    .button__text-write,
+    .button__audio-write {
+        height: 37px;
+    }
+}
+
+
+
+
+
+

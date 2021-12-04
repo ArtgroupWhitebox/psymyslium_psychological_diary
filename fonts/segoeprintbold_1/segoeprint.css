@@ -1,0 +1,9 @@
+@font-face {
+  font-family: 'SegoePrint-Bold';
+  src: local('SegoePrint Bold'), local('SegoePrint-Bold'), local('SegoePrintBold'), local('Segoe'), local('SegoePrint-Bold 5.02');
+  src: url('fonts/segoeprint.eot');
+  src: url('fonts/segoeprint.eot?#iefix') format('embedded-opentype'),
+    url('fonts/segoeprint.woff2') format('woff2'), 
+    url('fonts/segoeprint.woff') format('woff'),
+    url('fonts/segoeprint.ttf') format('truetype');
+}

@@ -1,0 +1,194 @@
+a:focus, 
+button:focus, 
+input:focus,
+div:focus,
+textarea:focus {
+  outline: none;
+}
+
+html {
+  background-color: rgb(74, 74, 75);
+  -webkit-tap-highlight-color: rgba(0, 0, 0, 0);
+  overflow: auto;
+}
+
+body {
+  position: relative;
+  z-index: 2;
+  width: 100%;
+  margin: auto;
+  background-color: #3B3B3C;
+  text-align: center;
+  font-family: "Espuma Pro", Helvetica, Arial, sans-serif;
+  cursor: context-menu;
+}
+
+.footer1 {
+    width: 100%;
+    height: 1800px;
+}
+
+::-webkit-scrollbar {
+    width: 5px;
+}
+::-webkit-scrollbar-track {
+    box-shadow: inset 0 0 6px rgba(0,0,0,0.3); 
+    border-radius: 2.5px;
+    -webkit-border-radius: 2.5px;
+}
+::-webkit-scrollbar-thumb {
+    -webkit-border-radius: 2.5px;
+    border-radius: 2.5px;
+    background: rgba(168, 167, 167, 0.8); 
+    box-shadow: inset 0 0 6px rgba(0,0,0,0.5); 
+}
+::-webkit-scrollbar-thumb:window-inactive {
+    background: rgba(168, 167, 167, 0.8); 
+}
+
+/* кнопки КАЛЕНДАРЬ и МЕНЮ */
+
+.two_buttons_top {
+    position: fixed; 
+    z-index: 1;   
+    display: flex;
+    width: 100%;
+    height: 53px;
+    align-items: flex-start;
+    justify-content: space-between;
+    font-size: 17px;
+    background: #3B3B3C;
+    box-shadow: 4px 4px 10px #3B3B3C;
+}
+
+.almanac_button,
+.menu_button {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    margin-top: 10px;
+    margin-left: 10px;
+    width: 143px;
+    height: 31px;
+    box-shadow: 4px 4px 4px rgba(0, 0, 0, 0.25);
+    border: 1px solid #C4C4C4;
+    border-radius: 4px; 
+    cursor: pointer;
+}
+
+.menu_button {
+    margin-left: 0px;
+    margin-right: 10px;
+    width: 124px;
+}
+
+.link_almanac,
+.link_menu {
+    letter-spacing: 2px;
+    text-decoration: none;
+    color: #C4C4C4;
+}
+
+.link_menu {
+    letter-spacing: 4px;
+}
+
+.almanac_button:hover,
+.menu_button:hover {
+    background: rgb(68, 68, 70);
+}
+
+/* фиксированная понель внизу экрана */
+
+.footer2-fix {
+    position: fixed; 
+    z-index: 1;   
+    display: flex;
+    margin-top: calc(100vh - 7px);
+    width: 100%;
+    height: 7px;
+    align-items: flex-end;
+    justify-content: space-between;
+    background:  #3B3B3C;
+    box-shadow: 4px -3px 7px #3B3B3C;
+}
+
+/* заголовок - ПСИ КАРТЫ - */
+
+.psy-cards__span {
+    display: flex;
+    justify-content: center;
+    color: #71F6FF;
+}
+
+.link-anchor__psy-cards {
+    padding-top: 65px;
+    padding-bottom: 30px;
+    font-size: 26px;
+    letter-spacing: 2px;
+    font-weight: 500;
+}
+
+/* Инструкция */
+
+.text-instruction {
+    width: 258px;
+    height: 258px;
+    border: 1.2px solid rgb(252, 219, 130);
+    border-radius: 4px;
+    box-shadow: 4px 4px 4px rgba(0, 0, 0, 0.25);
+    padding: 20px;
+    color: rgb(252, 219, 130);
+    overflow: auto;
+    resize: none;
+    font-family: 'Segoe Print', Helvetica, Arial, sans-serif;
+    font-size: 17px; 
+    font-weight: 200;
+    background: #3B3B3C;
+    cursor: pointer;
+    text-align: center;
+    letter-spacing: 1.5px;
+}
+
+/* Кнопки - ВЫБРАТЬ вариант РОНДОИ или ИНТУИЦИЯ */
+
+.button-selection {
+    display: flex;
+    flex-direction: column;
+    width: 268px;
+    height: 108px;
+    justify-content: space-between;
+    margin: 40px auto;
+}
+
+.button__rondom-selection,
+.button__intuitive-selection {
+    width: 100%;
+    border-radius: 4px;
+    border: 1px solid #71F6FF;
+    cursor: pointer;
+    box-shadow: 4px 4px 4px rgba(0, 0, 0, 0.25);
+    font-family: "Espuma Pro", Helvetica, Arial, sans-serif;
+    color: #71F6FF;
+    font-weight: 500;
+    height: 43px;
+    background: none;
+    font-size: 19px;
+}
+
+.link-anchor__rondom-selection,
+.link-anchor__intuitive-selection {
+    color: #71F6FF;
+    text-decoration: none;
+} 
+
+.button__rondom-selection:hover,
+.button__intuitive-selection:hover {
+    border: 1px solid #C7FFFC;    
+}
+
+.link-anchor__rondom-selection:hover,
+.link-anchor__intuitive-selection:hover {
+    color: #C7FFFC;      
+}
+

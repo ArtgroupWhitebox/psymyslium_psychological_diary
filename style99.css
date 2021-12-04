@@ -1,0 +1,372 @@
+a:focus, 
+button:focus, 
+input:focus,
+div:focus,
+textarea:focus {
+  outline: none;
+}
+
+html {
+  background-color: rgb(74, 74, 75);
+  -webkit-tap-highlight-color: rgba(0, 0, 0, 0);
+  overflow: auto;
+}
+
+body {
+  position: relative;
+  z-index: 2;
+  width: 100%;
+  margin: auto;
+  background-color: #3B3B3C;
+  text-align: center;
+  font-family: "Espuma Pro", Helvetica, Arial, sans-serif;
+  cursor: context-menu;
+}
+
+::-webkit-scrollbar {
+    width: 5px;
+}
+::-webkit-scrollbar-track {
+    box-shadow: inset 0 0 6px rgba(0,0,0,0.3); 
+    border-radius: 2.5px;
+    -webkit-border-radius: 2.5px;
+}
+::-webkit-scrollbar-thumb {
+    -webkit-border-radius: 2.5px;
+    border-radius: 2.5px;
+    background: rgba(168, 167, 167, 0.8); 
+    box-shadow: inset 0 0 6px rgba(0,0,0,0.5); 
+}
+::-webkit-scrollbar-thumb:window-inactive {
+    background: rgba(168, 167, 167, 0.8); 
+}
+
+::placeholder {
+    font-family: "Espuma Pro", Helvetica, Arial, sans-serif;
+    font-style: italic;
+    font-weight: 300;
+    font-size: 17px;
+    color: #C4C4C4;
+}
+
+/* кнопки ПСИ-КАРТЫ и МЕНЮ */
+
+.two_buttons_top {
+    position: fixed; 
+    z-index: 1;   
+    display: flex;
+    width: 100%;
+    height: 53px;
+    align-items: flex-start;
+    justify-content: space-between;
+    font-size: 17px;
+    background: #3B3B3C;
+    box-shadow: 4px 4px 10px #3B3B3C;
+}
+
+.psy-cards_button,
+.menu_button {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    margin-top: 10px;
+    margin-left: 10px;
+    width: 143px;
+    height: 31px;
+    box-shadow: 4px 4px 4px rgba(0, 0, 0, 0.25);
+    border: 1px solid #C4C4C4;
+    border-radius: 4px; 
+    cursor: pointer;
+}
+
+.menu_button {
+    margin-left: 0px;
+    margin-right: 10px;
+    width: 124px;
+}
+
+.link_psy-cards,
+.link_menu {
+    letter-spacing: 2px;
+    text-decoration: none;
+    color: #C4C4C4;
+}
+
+.link_menu {
+    letter-spacing: 4px;
+}
+
+.psy-cards_button:hover,
+.menu_button:hover {
+    background: rgb(68, 68, 70);
+}
+
+/* заголовок - ПСИ КАРТЫ - */
+
+.psy-cards__span,
+.h2 {
+    display: flex;
+    justify-content: center;
+    color: #71F6FF;
+}
+
+
+.link-anchor__psy-cards {
+    padding-top: 75px;
+    margin-bottom: 10px;
+    font-size: 26px;
+    letter-spacing: 2px;
+    font-weight: 500;
+}
+
+.h2 {
+    font-size: 19px;
+    letter-spacing: 2px;
+    margin-bottom: 48px;
+    font-weight: 500;
+}
+
+/* Слайдер */
+
+.mix-cards,
+.select-card {
+    display: flex;
+    width: 100%;
+    justify-content: center;
+    margin: 0px auto;
+}
+
+.select-card {
+    margin: 0px auto 64px auto;
+}
+
+.button__mix-cards,
+.button__select-card {
+    width: 180px;
+    border-radius: 4px;
+    border: 1.1px solid rgb(252, 219, 130);
+    cursor: pointer;
+    box-shadow: 4px 4px 4px rgba(0, 0, 0, 0.2);
+    font-family: "Espuma Pro", Helvetica, Arial, sans-serif;
+    color: rgb(252, 219, 130);
+    font-weight: 500;
+    height: 38px;
+    background: none;
+    font-size: 19px;
+}
+
+/* Вариант слайдера 2 */
+
+.slider {
+    width: 278px;
+    height: 194px;
+    position: relative;
+    border-radius: 4px;
+    box-shadow: 4px 4px 4px rgba(0, 0, 0, 0.25);
+    margin: 30px auto;
+    overflow: hidden;
+}
+
+.slider-line {
+    position: absolute;
+    width: 278px;
+    height: 194px;
+    border-radius: 4px;
+    top: 0;
+    left: 0;
+}
+
+.box-cards {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: space-between;
+    width: 319px;
+    /* height: 296px; */
+    position: relative;
+    border-radius: 4px;
+    box-shadow: 4px 4px 4px rgba(0, 0, 0, 0.25);
+    margin: 30px auto; 
+    cursor: pointer;   
+}
+
+.slider-line_2 {
+    width: 23px;
+    height: 23px;
+    margin: 2px;
+    border-radius: 4px;
+    border: 1px solid rgb(252, 219, 130);    
+}
+
+/* Кнопки - записать МЫСЛИ */
+
+.buttons-write {
+    display: flex;
+    flex-direction: column;
+    width: 278px;
+    height: 110px;
+    justify-content: space-between;
+    margin: auto;
+}
+
+.button__text-write,
+.button__audio-write2 {
+    width: 100%;
+    border-radius: 4px;
+    border: 1px solid #71F6FF;
+    cursor: pointer;
+    box-shadow: 4px 4px 4px rgba(0, 0, 0, 0.25);
+    font-family: "Espuma Pro", Helvetica, Arial, sans-serif;
+    color: #71F6FF;
+    font-weight: 500;
+    height: 46px;
+    background: none;
+    font-size: 19px;
+}
+
+.text-write-link,
+.audio-write-link {
+    text-decoration: none;
+}
+
+.button__text-write:hover,
+.button__audio-write2:hover {
+    border: 1px solid #C7FFFC;
+    color: #C7FFFC;
+}
+
+.footer1 {
+    width: 100%;
+    height: 1800px;
+}
+
+/* фиксированная понель внизу экрана */
+
+.footer2-fix {
+    position: fixed; 
+    z-index: 1;   
+    display: flex;
+    margin-top: calc(100vh - 7px);
+    width: 100%;
+    height: 7px;
+    align-items: flex-end;
+    justify-content: space-between;
+    background:  #3B3B3C;
+    box-shadow: 4px -3px 7px #3B3B3C;
+}
+
+@media (max-height: 568px) {
+    
+    .link-anchor__almanac-title,
+    .link-anchor__diary-title {
+        padding-top: 55px;
+        padding-bottom: 17px;
+        font-size: 23px;
+    }
+    
+    .link-anchor__diary-title {
+        letter-spacing: 8px;
+    }
+    
+    .link-anchor__psy-cards {
+        padding-top: 55px;
+        margin-bottom: 8px;
+        font-size: 23px;
+    }
+    
+    .h2 {
+        font-size: 17px;        
+        margin-bottom: 34px;        
+    }
+     
+    .enter_input {
+        margin: 34px auto;        
+    }
+    
+    .select-card {
+        margin: 0px auto 44px auto;
+    }
+}
+
+.slider-line_red {
+    border: 1px solid rgb(250, 53, 79); 
+}
+
+.modal-card {
+    display: flex;  
+    width: 100%;
+    height: 100%;
+    position: fixed;
+    top: 0;
+    left: 0;
+    background-color:rgb(85, 85, 85, 0.3);
+    z-index: 1010;
+}
+
+.modal-select-card {
+    position: relative;
+    display: flex;
+    flex-direction: column;
+    align-items: baseline;
+    width: 80%;
+    max-width: 340px;
+    height: 440px;
+    padding: 15px;
+    margin: auto; 
+    margin-top: 164px;   
+    background-color:rgb(85, 85, 85, 0.9);
+    color: #C4C4C4;
+    font-family: "Espuma Pro", Helvetica, Arial, sans-serif;
+    border: 1px solid rgba(0, 0, 0, 0.25);
+    font-weight: bold;
+    text-align: center;
+    justify-content: center;
+    align-items: center;
+    align-content: stretch;
+    border-radius: 5px; 
+    font-size: 18px;
+    font-weight: 500;
+    box-shadow: 4px 4px 4px rgba(0, 0, 0, 0.25);
+    z-index: 1011;
+}
+
+/* .textRedao222 {
+    height: 200px;
+}
+
+.textRedao444 {
+    height: 400px;
+} */
+
+.submit_modal-select {
+    color: #C4C4C4;
+    width: 100%;
+    width: 88px;
+    height: 40px;
+    border-radius: 5px;
+    border: 1px solid #C4C4C4;
+    font-family: "Espuma Pro", Helvetica, Arial, sans-serif;
+    font-size: 18px; 
+    font-weight: 500;
+    background-color:rgb(78, 78, 78);
+    box-shadow: 4px 4px 4px rgba(0, 0, 0, 0.25);
+    cursor: pointer;
+}
+
+/* .text-redact-input {
+    max-width: 410px;
+    height: 200px;
+    cursor: text;
+} */
+
+.submit_modal {
+    color: #C4C4C4;
+    font-family: "Espuma Pro", Helvetica, Arial, sans-serif;
+    font-size: 18px; 
+    font-weight: 500;
+    max-width: 200px;
+} 
+
+
+
+
+
