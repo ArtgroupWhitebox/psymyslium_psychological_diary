@@ -30,11 +30,6 @@
 
 ![advantages](README/screenshots/advantages.png)
 
-## Для начала работы в приложении 
-Нужно открыть в браузере файл index1.html из папки psymyslium 
-
-- index1.html
-
 ## Для авторизации необходимо заполнить обязательные поля
 
 - имя_аватар
