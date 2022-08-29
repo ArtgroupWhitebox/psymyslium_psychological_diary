@@ -4,16 +4,12 @@ enterInput.style.display = "flex";
 let enterNumber = document.querySelector(".enter_number");
 enterNumber.style.display = "flex";
 
-
 // Массив пси карт
 let slider = document.querySelector(".slider");
 slider.style.display = "none";
 
-
 let sliderLine = document.querySelectorAll(".slider-line");
 console.log(sliderLine);
-
-
 
 let arrSliderLine = [];
 
@@ -82,7 +78,6 @@ function topMixCardsFu2() {
     enterNumber.placeholder = "";    
 };
 
-
 function validationEnterInput() {
     x = enterNumber.value;
     if (x < 0 || x > 107) {
@@ -109,8 +104,6 @@ function showCardFu() {
     };    
 };
 
-
-
 // let step = 0;
 // let offset = 0;
 
@@ -128,8 +121,6 @@ function showCardFu() {
 //     };    
 //     offset = 1;
 // };
-
-
 
 // записать МЫСЛИ Audio
 
