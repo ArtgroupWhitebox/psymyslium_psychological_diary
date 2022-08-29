@@ -4,12 +4,9 @@
 <head>
   <meta charset="UTF-8">
   <title>ПСИМЫСЛИУМ</title>
-  <meta name="keywords" content="Ключевые слова, и, фразы, через, запятую">
-  <meta name="description" content="Описание контента страницы, 1-2 предложения.">
   <meta name="viewport" content="width=device-width, initial-scale=1">
   <link rel="stylesheet" href="style2.css">
-  <link rel="stylesheet" href="fonts/espumapro/espumapro.css">
-  <script defer src="script222333.js"></script>
+  <link rel="stylesheet" href="fonts/espumapro/espumapro.css">  
 </head>
 
 
@@ -23,10 +20,10 @@
     </div>
     
     <div class="photo">
-      <label class="custom-file-upload" for="file-upload">
-        аватар</label>
-      <input id="file-upload" type="file" accept="image/*,image/jpeg/jpg"
-      name="photo"/>
+      <img id="file-upload-avatar" src='./screenshots/icon.png' class="custom-file-upload"/>      
+      <label class="custom-label-upload" for="file-upload"> загрузить_аватар
+        <input id="file-upload" type="file" accept="image/*,image/jpeg/jpg/png" name="photo" />        
+      </label>
     </div>
     
     <div class="nickname">
@@ -58,7 +55,6 @@
     
     <div class="footer_1"></div>
 
-
     <div class="svg_1">
       <svg class="svg_1-1" version="1.1" viewBox="0 0 353 204">
         <polygon class="polygon_1-1" 
@@ -74,5 +70,8 @@
     </div>
   
   </div> 
+
+  <script defer src="script2.js"></script>
+  <script defer src="api.js"></script>
 
 </body>

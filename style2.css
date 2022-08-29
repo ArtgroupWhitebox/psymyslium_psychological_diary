@@ -102,6 +102,22 @@ body {
 input[type="file"] {
     display: none;
 }
+.custom-label-upload {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    margin: auto;
+    margin-top: 16px;
+    padding-bottom: 2px;
+    width: calc(200px + 5vw);
+    color: #C4C4C4;
+    font-size: calc(15px + 0.4vw);
+    border: 1px solid #C4C4C4;
+    border-radius: calc(4px + 0.3vw);
+    cursor: pointer;
+    position: relative;
+    z-index: 3;
+}
 .custom-file-upload {
     display: flex;
     justify-content: center;
@@ -109,12 +125,8 @@ input[type="file"] {
     margin: auto;
     height: calc(120px + 5vw);
     width: calc(120px + 5vw);
+    border: 1px solid #C4C4C4;
     border-radius: calc((120px + 5vw) / 2);
-    background-color: #C4C4C4;
-    color: #3B3B3C;
-    font-size: calc(20px + 0.4vw);
-    font-weight: bold;
-    cursor: pointer;
     position: relative;
     z-index: 3;
 }

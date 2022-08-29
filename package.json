@@ -1,1 +1,24 @@
-{}
+{
+  "type": "module",
+  "name": "psymyslium_psychological_diary",
+  "description": "Публичный адрес сайта: [https://artgroupwhitebox.github.io/psymyslium_psychological_diary/](https://artgroupwhitebox.github.io/psymyslium_psychological_diary/)",
+  "version": "1.0.0",
+  "main": "api.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/ArtgroupWhitebox/psymyslium_psychological_diary.git"
+  },
+  "author": "",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/ArtgroupWhitebox/psymyslium_psychological_diary/issues"
+  },
+  "homepage": "https://github.com/ArtgroupWhitebox/psymyslium_psychological_diary#readme",
+  "dependencies": {
+    "formdata-node": "^5.0.0",
+    "node-fetch": "^3.2.10"
+  }
+}
