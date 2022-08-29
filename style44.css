@@ -5,7 +5,7 @@ input:focus {
 }
 
 html {
-  background-color: #474747;
+  background-color: #555555;
   -webkit-tap-highlight-color: rgba(0, 0, 0, 0);
 }
 
@@ -270,36 +270,36 @@ input[type="file"] {
 }
 
 
-  .svg_1 {
-    width: 88vw;
-    position: fixed;
-    top: -3vw;
-    left: 0;
-  }
-  .svg_1-1 {
-    z-index: 2;
-    background: none;
-  }
-  .polygon_1-1 {
-    fill: #3B3B3C; 
-    stroke:none;
-  }
-  
-  
-  .svg_1-2 {
-    width: 93vw;
-    position: fixed;
-    top: calc(125px + 15vw);
-    right: 0;
-  }
-  .svg_1-1-2 {
-    z-index: 2;
-    background: none;
-  }
-  .polygon_1-1-2 {
-    fill: #3B3B3C; 
-    stroke:none;
-  }
+.svg_1 {
+width: 88vw;
+position: fixed;
+top: -3vw;
+left: 0;
+}
+.svg_1-1 {
+z-index: 2;
+background: none;
+}
+.polygon_1-1 {
+fill: #3B3B3C; 
+stroke:none;
+}
+
+
+.svg_1-2 {
+width: 93vw;
+position: fixed;
+top: calc(125px + 15vw);
+right: 0;
+}
+.svg_1-1-2 {
+z-index: 2;
+background: none;
+}
+.polygon_1-1-2 {
+fill: #3B3B3C; 
+stroke:none;
+}
 
 @media (max-width: 325px) {
     .svg_1 {
