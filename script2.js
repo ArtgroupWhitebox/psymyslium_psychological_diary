@@ -24,6 +24,7 @@ function showPhoto() {
     
     readerBlobFile.onload = async function() {
         localStorage["photoKey"] = readerBlobFile.result; // url с данными
+        
     };
 }
 
