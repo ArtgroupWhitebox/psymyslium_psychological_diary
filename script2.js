@@ -1,4 +1,4 @@
-// import fetch from 'node-fetch'
+// import { baseURL, headers } from "./api_server";
 
 var avatarImag = document.getElementsByClassName("custom-file-upload")[0];
 var photoInput = document.querySelector('input[type="file"]');
@@ -12,7 +12,7 @@ pasInput.onclick = showRulePas;
 photoInput.onchange = showPhoto;
 
 function showPhoto() {
-    file = photoInput.files[0];
+    let file = photoInput.files[0];
     console.log(file);
     let blobFile = new Blob([file], {type: "image/jpeg/png"});
     let photoURL = URL.createObjectURL(blobFile);
@@ -23,8 +23,7 @@ function showPhoto() {
     readerBlobFile.readAsDataURL(blobFile); // конвертирует Blob в base64 и вызывает onload        
     
     readerBlobFile.onload = async function() {
-        localStorage["photoKey"] = readerBlobFile.result; // url с данными
-        
+        localStorage["photoKey"] = readerBlobFile.result; // url с данными                       
     };
 }
 
@@ -83,12 +82,13 @@ function validationPas() {
         pasInput.className = 'password-upload';
         return true;
     }
-}   
-    
+}
 
 var subButton = document.getElementsByClassName("submit-upload")[0];
 subButton.onclick = submitShow;
 
+var hrefButton = document.getElementsByClassName("ssilka_2")[0];
+var userId = null
 
 function submitShow() {
 
@@ -97,12 +97,26 @@ function submitShow() {
         var log = logInput.value;
         var pas = document.getElementsByClassName("password-upload")[0].value;
 
-        localStorage["nickKey"] = nick;
-        localStorage["logKey"] = log;
-        localStorage["pasKey"] = pas;   
-        
-        var hrefButton = document.getElementsByClassName("ssilka_2")[0];   
-        hrefButton.href = "index44.html";
+        // localStorage["nickKey"] = nick;
+        // localStorage["logKey"] = log;
+        // localStorage["pasKey"] = pas;   
+
+        fetch(`http://localhost:7000/users`, {method: 'POST',
+            body: JSON.stringify({
+                nick: nick,
+                email: log,
+                password: pas}),
+            headers: {
+                'Content-Type': 'application/json'
+            }})
+        .then(res => res.json())
+        .then(user => {
+            localStorage["userId"] = String(user.id);
+            console.log('userId =', localStorage["userId"]); 
+                                                                            
+        }) 
+        hrefButton.href = "index44.html"; 
+                        
     } else {
         validationNick();
         validationLog();
