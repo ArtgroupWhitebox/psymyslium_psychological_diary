@@ -1,5 +1,3 @@
-// import { baseURL, headers } from "./api_server";
-
 var avatarImag = document.getElementsByClassName("custom-file-upload")[0];
 var photoInput = document.querySelector('input[type="file"]');
 var nickInput = document.getElementsByClassName("text-upload")[0];
@@ -14,17 +12,30 @@ photoInput.onchange = showPhoto;
 function showPhoto() {
     let file = photoInput.files[0];
     console.log(file);
-    let blobFile = new Blob([file], {type: "image/jpeg/png"});
-    let photoURL = URL.createObjectURL(blobFile);
-    console.log(photoURL);
-    avatarImag.src = photoURL; 
+    // let blobFile = new Blob([file], {type: "image/jpeg/png"});
+    // let photoURL = URL.createObjectURL(blobFile);
+    // console.log(photoURL);
+    // avatarImag.src = photoURL; 
     
-    let readerBlobFile = new FileReader();
-    readerBlobFile.readAsDataURL(blobFile); // конвертирует Blob в base64 и вызывает onload        
+    // let readerBlobFile = new FileReader();
+    // readerBlobFile.readAsDataURL(blobFile); // конвертирует Blob в base64 и вызывает onload        
     
-    readerBlobFile.onload = async function() {
-        localStorage["photoKey"] = readerBlobFile.result; // url с данными                       
-    };
+    // readerBlobFile.onload = async function() {
+    //     localStorage["photoKey"] = readerBlobFile.result; // url с данными                            
+    // };
+
+    const formData = new FormData()
+    formData.append('image', file)
+      
+    fetch(`http://localhost:7000/upload`, {
+        method: 'POST',
+        body: formData
+    })
+    .then(res => res.json())
+    .then(json => {
+        console.log('imageUrl =', json.imageUrl)
+        avatarImag.src = json.imageUrl
+    })           
 }
 
 function showRuleNick() {
@@ -38,7 +49,6 @@ function showRuleLog() {
 function showRulePas() {
     pasInput.placeholder = 'от 4 до 8 символов';
 }
-
 
 nickInput.onblur = validationNick;
 logInput.onblur = validationLog;
@@ -91,7 +101,6 @@ var hrefButton = document.getElementsByClassName("ssilka_2")[0];
 var userId = null
 
 function submitShow() {
-
     if ( validationNick() && (validationLog() == true) && validationPas() ) {
         var nick = nickInput.value;
         var log = logInput.value;
@@ -101,19 +110,20 @@ function submitShow() {
         // localStorage["logKey"] = log;
         // localStorage["pasKey"] = pas;   
 
-        fetch(`http://localhost:7000/users`, {method: 'POST',
+        fetch(`http://localhost:7000/users`, {
+            method: 'POST',
             body: JSON.stringify({
                 nick: nick,
                 email: log,
                 password: pas}),
             headers: {
                 'Content-Type': 'application/json'
-            }})
+            }
+        })
         .then(res => res.json())
         .then(user => {
             localStorage["userId"] = String(user.id);
-            console.log('userId =', localStorage["userId"]); 
-                                                                            
+            console.log('userId =', localStorage["userId"]);                                                                            
         }) 
         hrefButton.href = "index44.html"; 
                         
@@ -123,4 +133,3 @@ function submitShow() {
         validationPas();
     }
 }
-
