@@ -1,41 +1,27 @@
+var headerSub = document.getElementsByClassName("header_sub")[0];
 var avatarImag = document.getElementsByClassName("custom-file-upload")[0];
+var photoLabel = document.getElementsByClassName("custom-label-upload")[0];
 var photoInput = document.querySelector('input[type="file"]');
 var nickInput = document.getElementsByClassName("text-upload")[0];
+var nickname = document.getElementsByClassName("nickname")[0];
 var logInput = document.getElementsByClassName("email-upload")[0];
+var login = document.getElementsByClassName("login")[0];
 var pasInput = document.getElementsByClassName("password-upload")[0];
-
+var password = document.getElementsByClassName("password")[0];
+var preventionSub = document.getElementsByClassName("prevention_sub")[0];
+ 
 nickInput.onclick = showRuleNick;
 logInput.onclick = showRuleLog;
 pasInput.onclick = showRulePas;
 photoInput.onchange = showPhoto;
 
-function showPhoto() {
+function showPhoto() { 
     let file = photoInput.files[0];
-    console.log(file);
-    // let blobFile = new Blob([file], {type: "image/jpeg/png"});
-    // let photoURL = URL.createObjectURL(blobFile);
-    // console.log(photoURL);
-    // avatarImag.src = photoURL; 
-    
-    // let readerBlobFile = new FileReader();
-    // readerBlobFile.readAsDataURL(blobFile); // конвертирует Blob в base64 и вызывает onload        
-    
-    // readerBlobFile.onload = async function() {
-    //     localStorage["photoKey"] = readerBlobFile.result; // url с данными                            
-    // };
-
-    const formData = new FormData()
-    formData.append('image', file)
-      
-    fetch(`http://localhost:7000/upload`, {
-        method: 'POST',
-        body: formData
-    })
-    .then(res => res.json())
-    .then(json => {
-        console.log('imageUrl =', json.imageUrl)
-        avatarImag.src = json.imageUrl
-    })           
+    console.log(file);   
+    let blobFile = new Blob([file], {type: "image/jpeg/png"});
+    let photoURL = URL.createObjectURL(blobFile);
+    console.log('photoURL =', photoURL);
+    avatarImag.src = photoURL;
 }
 
 function showRuleNick() {
@@ -98,35 +84,57 @@ var subButton = document.getElementsByClassName("submit-upload")[0];
 subButton.onclick = submitShow;
 
 var hrefButton = document.getElementsByClassName("ssilka_2")[0];
-var userId = null
 
 function submitShow() {
+    
     if ( validationNick() && (validationLog() == true) && validationPas() ) {
         var nick = nickInput.value;
         var log = logInput.value;
         var pas = document.getElementsByClassName("password-upload")[0].value;
-
-        // localStorage["nickKey"] = nick;
-        // localStorage["logKey"] = log;
-        // localStorage["pasKey"] = pas;   
-
-        fetch(`http://localhost:7000/users`, {
+        
+        let file = photoInput.files[0];
+        const formData = new FormData()
+        formData.append('image', file)
+        
+        fetch(`http://localhost:7000/upload`, {
             method: 'POST',
-            body: JSON.stringify({
-                nick: nick,
-                email: log,
-                password: pas}),
-            headers: {
-                'Content-Type': 'application/json'
-            }
+            body: formData
         })
         .then(res => res.json())
-        .then(user => {
-            localStorage["userId"] = String(user.id);
-            console.log('userId =', localStorage["userId"]);                                                                            
-        }) 
-        hrefButton.href = "index44.html"; 
-                        
+        .then(json => {
+            let avatarUrl = json.imageUrl
+            console.log('avatarUrl =', avatarUrl);
+
+            fetch(`http://localhost:7000/users`, {
+                method: 'POST',
+                body: JSON.stringify({
+                    nick: nick,
+                    email: log,
+                    password: pas,
+                    avatar: avatarUrl
+                }),
+                headers: {
+                    'Content-Type': 'application/json'
+                }
+            })
+            .then(res => res.json())
+            .then(user => {
+                localStorage["userId"] = String(user.id);
+                console.log('userId =', localStorage["userId"]);                
+                hrefButton.href = "index44.html"; 
+                photoLabel.style.display = "none";
+                nickInput.style.display = "none";
+                logInput.style.display = "none";
+                pasInput.style.display = "none"; 
+                preventionSub.style.display = "none";
+                headerSub.innerHTML = 'Успешно!'; 
+                avatarImag.style.border = "1px solid #93FFF8";
+                nickname.innerHTML = `${user.nick}`; 
+                login.innerHTML = `${user.email}`; 
+                password.innerHTML = `${user.password}`;                                                                                                       
+            })                               
+        })
+        subButton.innerHTML = '- В Х О Д -';                       
     } else {
         validationNick();
         validationLog();

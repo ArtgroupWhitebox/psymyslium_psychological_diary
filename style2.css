@@ -90,7 +90,7 @@ body {
     letter-spacing: calc(8px + 0.2vw);
 }
 .header_sub {
-    color: #93FFF8;
+    color: #93fff8;
     position: relative;
     z-index: 3;
 }
@@ -109,7 +109,7 @@ input[type="file"] {
     margin: 16px auto;
     padding-bottom: 2px;
     height: calc(30px + 1.5vw + 0.5vh);
-    width: calc(200px + 5vw);
+    width: calc(150px + 5vw);
     color: #C4C4C4;
     font-size: calc(15px + 0.4vw);
     border: 1px solid #C4C4C4;
@@ -134,6 +134,11 @@ input[type="file"] {
 .nickname {
     grid-area: nickname;
     align-self: end;
+    color: #93fff8;
+    font-size: calc(20px + 0.4vw);
+    text-transform: uppercase;    
+    position: relative;
+    z-index: 3;
 }
 .text-upload {
     height: calc(30px + 1.5vw + 0.5vh);
@@ -152,10 +157,13 @@ input[type="file"] {
     z-index: 3;
 }
 
-
 .login {
     grid-area: login;
     align-self: center;
+    color: #93fff8;
+    font-size: calc(16px + 0.4vw);
+    position: relative;
+    z-index: 3;
 }
 .email-upload {
     height: calc(30px + 1.5vw + 0.5vh);
@@ -177,6 +185,10 @@ input[type="file"] {
 
 .password {
     grid-area: password;
+    color: #93fff8;
+    font-size: calc(16px + 0.4vw);
+    position: relative;
+    z-index: 3;
 }
 .password-upload {
     height: calc(30px + 1.5vw + 0.5vh);
@@ -193,7 +205,7 @@ input[type="file"] {
     cursor: text;
     position: relative;
     z-index: 3;
-} 
+}
 
 .submit_button {
     grid-area: submit_button;
