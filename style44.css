@@ -47,6 +47,36 @@ body {
     z-index: 3;
 }
 
+.settings_block {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    border-radius: 10px;    
+    width: 20px;
+    height: 20px;
+    position: absolute;
+    top: 10px;
+    right: 10px;
+    z-index: 3;
+}
+.settings_button {    
+    background: none;    
+    border: none;
+    width: 16px;
+    height: 16px; 
+    padding: 0px;
+}
+.settings, .settings-link {    
+    background: none;
+    width: 15px;
+    height: 15px; 
+    text-decoration: none; 
+    padding: 0px;
+}
+.settings_block:hover {
+    background-color: #444343;
+}
+
 .photo_url {
     grid-area: photo_url;
     align-self: center;

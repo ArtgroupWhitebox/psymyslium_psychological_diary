@@ -9,11 +9,36 @@ var login = document.getElementsByClassName("login")[0];
 var pasInput = document.getElementsByClassName("password-upload")[0];
 var password = document.getElementsByClassName("password")[0];
 var preventionSub = document.getElementsByClassName("prevention_sub")[0];
+var subButton = document.getElementsByClassName("submit-upload")[0];
+var hrefButton = document.getElementsByClassName("ssilka_2")[0];
  
 nickInput.onclick = showRuleNick;
 logInput.onclick = showRuleLog;
 pasInput.onclick = showRulePas;
+subButton.onclick = submitShow;
+
 photoInput.onchange = showPhoto;
+
+nickInput.onblur = validationNick;
+logInput.onblur = validationLog;
+pasInput.onblur = validationPas;
+
+let userId = localStorage["userId"];
+
+if (userId) {
+    fetch(`http://localhost:7000/users/${userId}`, {
+        method: 'GET',
+    })
+    .then(res => res.json())
+    .then(user => { 
+        nickInput.value = user.nick; 
+        logInput.value = user.email; 
+        pasInput.value = user.password;
+        avatarImag.src = user.avatar;
+        headerSub.innerHTML = 'Редактировать данные:';  
+        photoLabel.innerHTML = 'заменить_аватар';                      
+    })
+}
 
 function showPhoto() { 
     let file = photoInput.files[0];
@@ -36,10 +61,6 @@ function showRulePas() {
     pasInput.placeholder = 'от 4 до 8 символов';
 }
 
-nickInput.onblur = validationNick;
-logInput.onblur = validationLog;
-pasInput.onblur = validationPas;
-
 function validationNick() {
     if (nickInput.value.length < 1 || nickInput.value.length > 10) {
         nickInput.className = 'text-upload error';
@@ -53,7 +74,6 @@ function validationNick() {
 }
 
 function validationLog() {
-
     var dogSign = logInput.value.indexOf("@");
     var points = logInput.value.indexOf(".");
     
@@ -80,61 +100,92 @@ function validationPas() {
     }
 }
 
-var subButton = document.getElementsByClassName("submit-upload")[0];
-subButton.onclick = submitShow;
-
-var hrefButton = document.getElementsByClassName("ssilka_2")[0];
-
-function submitShow() {
-    
-    if ( validationNick() && (validationLog() == true) && validationPas() ) {
-        var nick = nickInput.value;
-        var log = logInput.value;
-        var pas = document.getElementsByClassName("password-upload")[0].value;
+async function userAvatarUrl() {
+    let file = photoInput.files[0];
+    console.log('file =', file);
+    const formData = new FormData()
+    formData.append('image', file)
         
-        let file = photoInput.files[0];
-        const formData = new FormData()
-        formData.append('image', file)
-        
-        fetch(`http://localhost:7000/upload`, {
+    if (file) {
+        return fetch(`http://localhost:7000/upload`, {
             method: 'POST',
-            body: formData
+            body: formData 
         })
         .then(res => res.json())
         .then(json => {
-            let avatarUrl = json.imageUrl
-            console.log('avatarUrl =', avatarUrl);
+            console.log('avatarUrl =', json.imageUrl);
+            return json.imageUrl;          
+        })  
+    } else {
+        return Promise.resolve(avatarImag.src);
+    } 
+}
 
-            fetch(`http://localhost:7000/users`, {
-                method: 'POST',
-                body: JSON.stringify({
-                    nick: nick,
-                    email: log,
-                    password: pas,
-                    avatar: avatarUrl
-                }),
-                headers: {
-                    'Content-Type': 'application/json'
-                }
-            })
-            .then(res => res.json())
-            .then(user => {
-                localStorage["userId"] = String(user.id);
-                console.log('userId =', localStorage["userId"]);                
-                hrefButton.href = "index44.html"; 
-                photoLabel.style.display = "none";
-                nickInput.style.display = "none";
-                logInput.style.display = "none";
-                pasInput.style.display = "none"; 
-                preventionSub.style.display = "none";
-                headerSub.innerHTML = 'Успешно!'; 
-                avatarImag.style.border = "1px solid #93FFF8";
-                nickname.innerHTML = `${user.nick}`; 
-                login.innerHTML = `${user.email}`; 
-                password.innerHTML = `${user.password}`;                                                                                                       
-            })                               
-        })
-        subButton.innerHTML = '- В Х О Д -';                       
+console.log('userAvatarUrl() =', userAvatarUrl());
+
+function changePageView(user) {
+    hrefButton.href = "index44.html"; 
+    photoLabel.style.display = "none";
+    nickInput.style.display = "none";
+    logInput.style.display = "none";
+    pasInput.style.display = "none"; 
+    preventionSub.style.display = "none";
+    headerSub.innerHTML = 'Успешно!'; 
+    avatarImag.style.border = "1px solid #93FFF8";
+    nickname.innerHTML = user.nick; 
+    login.innerHTML = user.email; 
+    password.innerHTML = user.password;  
+}
+
+function createdUser(bodyUser, headersReqUsers) {
+    fetch(`http://localhost:7000/users`, {
+        method: 'POST',
+        body: bodyUser,
+        headers: headersReqUsers
+    })
+    .then(res => res.json())
+    .then(user => {
+        localStorage["userId"] = String(user.id); 
+        console.log('userId =', localStorage["userId"]); 
+        changePageView(user);                                                                                                                      
+    }) 
+    subButton.innerHTML = '- В Х О Д -'; 
+}
+
+function updateUser(bodyUser, headersReqUsers) {
+    fetch(`http://localhost:7000/users/${userId}`, {
+        method: 'PUT',
+        body: bodyUser,
+        headers: headersReqUsers
+    })
+    .then(res => res.json())
+    .then(user => {
+        changePageView(user);                                                                                                       
+    })
+    subButton.innerHTML = '- М Е Н Ю -';  
+}
+
+function submitShow() {    
+    if ( validationNick() && (validationLog() == true) && validationPas() ) {
+
+        userAvatarUrl()
+        .then(avatarUrl => {
+            const bodyUser = JSON.stringify({
+                nick: nickInput.value,
+                email: logInput.value,
+                password: pasInput.value,
+                avatar: avatarUrl
+            })            
+            const headersReqUsers = {
+                'Content-Type': 'application/json'
+            }            
+
+            if (!userId) {
+                createdUser(bodyUser, headersReqUsers)  
+            } else {
+                updateUser(bodyUser, headersReqUsers)   
+            } 
+        })                     
     } else {
         validationNick();
         validationLog();
