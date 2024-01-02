@@ -26,7 +26,7 @@ pasInput.onblur = validationPas;
 let userId = localStorage["userId"];
 
 if (userId) {
-    fetch(`http://localhost:7000/users/${userId}`, {
+    fetch(`${API_URL}/users/${userId}`, {
         method: 'GET',
     })
     .then(res => res.json())
@@ -41,12 +41,35 @@ if (userId) {
 }
 
 function showPhoto() { 
+    let file = photoInput.files[0];    
+    if (file) {
+        console.log(file); 
+        let blobFile = new Blob([file], {type: "image/jpeg/png"});
+        let photoURL = URL.createObjectURL(blobFile);
+        console.log('photoURL =', photoURL);
+        avatarImag.src = photoURL;
+    } 
+}
+
+async function userAvatarUrl() {
     let file = photoInput.files[0];
-    console.log(file);   
-    let blobFile = new Blob([file], {type: "image/jpeg/png"});
-    let photoURL = URL.createObjectURL(blobFile);
-    console.log('photoURL =', photoURL);
-    avatarImag.src = photoURL;
+    console.log('file =', file);
+    const formData = new FormData()
+    formData.append('image', file)
+        
+    if (file) {
+        return fetch(`${API_URL}/upload`, {
+            method: 'POST',
+            body: formData 
+        })
+        .then(res => res.json())
+        .then(json => {
+            console.log('avatarUrl =', json.imageUrl);
+            return json.imageUrl;          
+        })  
+    } else {
+        return Promise.resolve(avatarImag.src);
+    } 
 }
 
 function showRuleNick() {
@@ -66,6 +89,7 @@ function validationNick() {
         nickInput.className = 'text-upload error';
         nickInput.value = '';
         nickInput.placeholder = 'введите корректное имя';
+        console.log('не корректное или пустое поле: имя_никнейм');
         return false;
     } else {
         nickInput.className = 'text-upload';
@@ -81,6 +105,7 @@ function validationLog() {
         logInput.className = 'email-upload error';
         logInput.value = '';
         logInput.placeholder = 'введите корректный Email';
+        console.log('не корректное или пустое поле: логин_email');
         return false;
     } else {
         logInput.className = 'email-upload';
@@ -93,35 +118,13 @@ function validationPas() {
         pasInput.className = 'password-upload error';
         pasInput.value = "";
         pasInput.placeholder = 'введите корректный пароль';
+        console.log('не корректное или пустое поле: пароль_код');
         return false;
     } else {
         pasInput.className = 'password-upload';
         return true;
     }
 }
-
-async function userAvatarUrl() {
-    let file = photoInput.files[0];
-    console.log('file =', file);
-    const formData = new FormData()
-    formData.append('image', file)
-        
-    if (file) {
-        return fetch(`http://localhost:7000/upload`, {
-            method: 'POST',
-            body: formData 
-        })
-        .then(res => res.json())
-        .then(json => {
-            console.log('avatarUrl =', json.imageUrl);
-            return json.imageUrl;          
-        })  
-    } else {
-        return Promise.resolve(avatarImag.src);
-    } 
-}
-
-console.log('userAvatarUrl() =', userAvatarUrl());
 
 function changePageView(user) {
     hrefButton.href = "index44.html"; 
@@ -138,7 +141,7 @@ function changePageView(user) {
 }
 
 function createdUser(bodyUser, headersReqUsers) {
-    fetch(`http://localhost:7000/users`, {
+    fetch(`${API_URL}/users`, {
         method: 'POST',
         body: bodyUser,
         headers: headersReqUsers
@@ -153,7 +156,7 @@ function createdUser(bodyUser, headersReqUsers) {
 }
 
 function updateUser(bodyUser, headersReqUsers) {
-    fetch(`http://localhost:7000/users/${userId}`, {
+    fetch(`${API_URL}/users/${userId}`, {
         method: 'PUT',
         body: bodyUser,
         headers: headersReqUsers
@@ -166,7 +169,7 @@ function updateUser(bodyUser, headersReqUsers) {
 }
 
 function submitShow() {    
-    if ( validationNick() && (validationLog() == true) && validationPas() ) {
+    if (validationNick() && validationLog() && validationPas() && userAvatarUrl()) {
 
         userAvatarUrl()
         .then(avatarUrl => {
@@ -186,9 +189,11 @@ function submitShow() {
                 updateUser(bodyUser, headersReqUsers)   
             } 
         })                     
-    } else {
-        validationNick();
-        validationLog();
-        validationPas();
+    } 
+    else {
+        if (!validationNick()) return console.log('не корректное или пустое поле: имя_никнейм');
+        if (!validationLog()) return console.log('не корректное или пустое поле: логин_email');
+        if (!validationPas()) return console.log('не корректное или пустое поле: пароль_код');
+        if (!userAvatarUrl()) return console.log('не верный тип файла или размер файла превышает 10МБ, или пустое поле: аватар');
     }
 }
